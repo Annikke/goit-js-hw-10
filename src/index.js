@@ -20,7 +20,7 @@ function searchCountry() {
           'Too many matches found. Please enter a more specific name.'
         );
         resetListAndInfo();
-        // return (markup = '');
+        return (markup = '');
       }
       if (country.length > 1 && country.length < 11) {
         markup = country.map(createCountriesList).join('');
