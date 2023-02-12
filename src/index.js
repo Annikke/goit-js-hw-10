@@ -11,8 +11,10 @@ const countryInfo = document.querySelector('.country-info');
 
 searchBox.addEventListener('input', debounce(searchCountry, DEBOUNCE_DELAY));
 
-function searchCountry() {
-  const value = searchBox.value.trim();
+function searchCountry(eve) {
+  eve.preventDefault();
+  const value = eve.target.value.trim();
+  if (value.length === 0) return;
   fetchCountries(value)
     .then(country => {
       if (country.length > 10) {
@@ -20,7 +22,7 @@ function searchCountry() {
           'Too many matches found. Please enter a more specific name.'
         );
         resetListAndInfo();
-        return (markup = '');
+        // return (markup = '');
       }
       if (country.length > 1 && country.length < 11) {
         markup = country.map(createCountriesList).join('');
